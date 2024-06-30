@@ -37,27 +37,32 @@ function send_file(file_name,id)
     rednet.broadcast(data)
 end
  
-function send_songs()
+function send_songs(songs)
     term.clear()
-    if not fs.exists("songs") then
-        fs.makeDir("songs")
-        print("Put your songs in the generated 'songs/' folder, then run the program again.")
-    end
     
-    song_list = fs.list("songs")
     
-    for i,song in pairs(song_list) do
+    for i,song in pairs(songs) do
         print(song)
         send_file("songs/" .. song)
     end
 end
 
 print("Welcome to RedMusic!")
-print("Would you like this computer to send songs to other computers or would you like to have this computer wait for other computers' signal to play a song?")
-print("Respond with  'send' or 'receive'.")
-response = io.read()
-if response == 'receive' then
+
+response = ...
+if response == nil then
+    print("You need to pass an argument, either receive if you want the computer to wait for songs or the path of the song to transmit the chosen song.")
+elseif response == "receive" then
     receive_songs()
-elseif response == "send" then
+elseif fs.exists(response) then
     send_songs()
 end
+
+--print("Would you like this computer to send songs to other computers or would you like to have this computer wait for other computers' signal to play a song?")
+--print("Respond with  'send' or 'receive'.")
+--response = io.read()
+--if response == 'receive' then
+--    receive_songs()
+--elseif response == "send" then
+--    send_songs()
+--end
