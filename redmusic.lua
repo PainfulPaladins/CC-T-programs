@@ -1,7 +1,7 @@
 peripheral.find("modem",rednet.open)
  
 function receive_file()
-    local id,data = rednet.receive()
+    local id,data = rednet.receive("redmusic")
     local file = fs.open("song.mp3", "w")
     file.write(data)
     file.close()
@@ -30,23 +30,13 @@ function receive_songs()
     end
 end
 
-function send_file(file_name,id)
+function send_songs(file_name,id)
     local file = fs.open(file_name,"r")
     local data = file.readAll()
     file.close()
-    rednet.broadcast(data)
+    rednet.broadcast(data,"redmusic")
 end
  
-function send_songs(songs)
-    term.clear()
-    
-    
-    for i,song in pairs(songs) do
-        print(song)
-        send_file("songs/" .. song)
-    end
-end
-
 print("Welcome to RedMusic!")
 
 response = ...
