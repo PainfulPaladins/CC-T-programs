@@ -5,6 +5,7 @@ function receive_file()
     local file = fs.open("song.mp3", "w")
     file.write(data)
     file.close()
+    rednet.send(id,"Received")
 end
  
 function play_file()
@@ -34,7 +35,11 @@ function send_songs(file_name,id)
     local file = fs.open(file_name,"r")
     local data = file.readAll()
     file.close()
-    rednet.broadcast(data,"redmusic")
+    print("Waiting for listener..")
+    repeat
+        rednet.broadcast(data,"redmusic")
+        output = rednet.receive("redmusic",0.5)
+    until output == "Received"
 end
  
 print("Welcome to RedMusic!")
