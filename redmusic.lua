@@ -45,7 +45,7 @@ if response == nil then
 elseif response == "receive" then
     receive_songs()
 elseif fs.exists(response) then
-    send_songs()
+    send_songs(response)
 else
     print("Invalid arguments.")
 end
