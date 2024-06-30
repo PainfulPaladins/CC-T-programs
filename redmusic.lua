@@ -50,12 +50,13 @@ end
 print("Welcome to RedMusic!")
 
 response = ...
-if response == nil then
-    print("You need to pass an argument, either receive if you want the computer to wait for songs or the path of the song to transmit the chosen song.")
-elseif response == "receive" then
+
+if response == "receive" then
     receive_songs()
 elseif fs.exists(response) then
     send_songs()
+else
+    print("You need to pass an argument, either 'receive' if you want the computer to wait for songs to be trasmitted or the path of the song to transmit the chosen song.")
 end
 
 --print("Would you like this computer to send songs to other computers or would you like to have this computer wait for other computers' signal to play a song?")
