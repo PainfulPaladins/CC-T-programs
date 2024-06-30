@@ -58,12 +58,3 @@ elseif fs.exists(response) then
 else
     print("You need to pass an argument, either 'receive' if you want the computer to wait for songs to be trasmitted or the path of the song to transmit the chosen song.")
 end
-
---print("Would you like this computer to send songs to other computers or would you like to have this computer wait for other computers' signal to play a song?")
---print("Respond with  'send' or 'receive'.")
---response = io.read()
---if response == 'receive' then
---    receive_songs()
---elseif response == "send" then
---    send_songs()
---end
