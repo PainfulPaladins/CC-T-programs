@@ -50,11 +50,12 @@ end
 print("Welcome to RedMusic!")
 
 response = ...
-
+if response == nil then
+    print("You need to pass an argument, either 'receive' if you want the computer to wait for songs to be trasmitted or the path of the song to transmit the chosen song.")
 if response == "receive" then
     receive_songs()
 elseif fs.exists(response) then
     send_songs()
 else
-    print("You need to pass an argument, either 'receive' if you want the computer to wait for songs to be trasmitted or the path of the song to transmit the chosen song.")
+    print("Invalid arguments.")
 end
