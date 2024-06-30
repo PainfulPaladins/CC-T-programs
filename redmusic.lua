@@ -34,7 +34,7 @@ function send_file(file_name,id)
     local file = fs.open(file_name,"r")
     local data = file.readAll()
     file.close()
-    rednet.send(15,data)
+    rednet.broadcast(data)
 end
  
 function send_songs()
@@ -54,4 +54,10 @@ end
 
 print("Welcome to RedMusic!")
 print("Would you like this computer to send songs to other computers or would you like to have this computer wait for other computers' signal to play a song?")
-
+print("Respond with  'send' or 'receive'.")
+response = io.read()
+if response == 'receive' then
+    receive_songs()
+elseif response == "send" then
+    send_songs()
+end
